@@ -14,6 +14,16 @@ app.get('/', (req, res) => {
     res.sendStatus(400);
   }
 });
+app.get("/webhooks", (req, res) => {
+  if (
+    req.query["hub.mode"] === "subscribe" &&
+    req.query["hub.verify_token"] === token
+  ) {
+    res.send(req.query["hub.challenge"]);
+  } else {
+    res.sendStatus(403);
+  }
+});
 app.post("/webhooks", (req, res) => {
   try {
     console.log("📥 Received Webhook:", JSON.stringify(req.body, null, 2));
@@ -25,7 +35,7 @@ app.post("/webhooks", (req, res) => {
         console.log("Value:", change.value);
       });
     }
-
+   
     res.status(200).send("EVENT_RECEIVED");
   } catch (err) {
     console.error("Webhook Error:", err.message);
