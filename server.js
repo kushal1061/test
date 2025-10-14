@@ -14,6 +14,24 @@ app.get('/', (req, res) => {
     res.sendStatus(400);
   }
 });
+app.post("/webhooks", (req, res) => {
+  try {
+    console.log("📥 Received Webhook:", JSON.stringify(req.body, null, 2));
+
+    const event = req.body.entry?.[0];
+    if (event?.changes) {
+      event.changes.forEach(change => {
+        console.log("Field:", change.field);
+        console.log("Value:", change.value);
+      });
+    }
+
+    res.status(200).send("EVENT_RECEIVED");
+  } catch (err) {
+    console.error("Webhook Error:", err.message);
+    res.status(400).send("Invalid signature");
+  }
+});
 app.get(['/facebook', '/instagram', '/threads'], function(req, res) {
   console.log(req.query);
   if (
