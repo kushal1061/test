@@ -7,6 +7,7 @@ app.get('/', (req, res) => {
 });
 const token = "kushalpal"
 app.get(['/facebook', '/instagram', '/threads'], function(req, res) {
+  console.log(req.query);
   if (
     req.query['hub.mode'] == 'subscribe' &&
     req.query['hub.verify_token'] == token
