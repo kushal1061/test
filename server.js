@@ -2,10 +2,18 @@ const express = require('express');
 const app = express();
 const port = 3000;
 app.use(express.json());
-app.get('/', (req, res) => {
-  res.send('Hello World!');
-});
 const token = "kushalpal"
+app.get('/', (req, res) => {
+   console.log(req.query);
+  if (
+    req.query['hub.mode'] == 'subscribe' &&
+    req.query['hub.verify_token'] == token
+  ) {
+    res.send(req.query['hub.challenge']);
+  } else {
+    res.sendStatus(400);
+  }
+});
 app.get(['/facebook', '/instagram', '/threads'], function(req, res) {
   console.log(req.query);
   if (
