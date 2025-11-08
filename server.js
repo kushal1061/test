@@ -1,3 +1,4 @@
+const { replyToComment } = require("./comment_reply.js");
 const express = require('express');
 const app = express();
 const port = 3000;
@@ -27,8 +28,11 @@ app.get("/webhooks", (req, res) => {
 app.post("/webhooks", (req, res) => {
   try {
     console.log("📥 Received Webhook:", JSON.stringify(req.body, null, 2));
-
     const event = req.body.entry?.[0];
+    if(entry?.changes.field==="comments" && entry?.changes.value?.text.trim().toLowerCase()==="flight"){
+      const CommentId=entry?.changes.value?.id;
+      replyToComment(CommentId );
+    }
     if (event?.changes) {
       event.changes.forEach(change => {
         console.log("Field:", change.field);
