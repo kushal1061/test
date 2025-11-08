@@ -10,7 +10,7 @@ async function replyToComment(commentId,userId) {
       url,
       {
         recipient: { comment_id: commentId },
-        message: { text: replyText }
+        message: { text: "hello" }
       },
       {
         headers: {
