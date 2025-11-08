@@ -28,25 +28,32 @@ app.get("/webhooks", (req, res) => {
 app.post("/webhooks", (req, res) => {
   try {
     console.log("📥 Received Webhook:", JSON.stringify(req.body, null, 2));
+
     const event = req.body.entry?.[0];
-    const change = event?.changes?.[0];
+    const change = event?.changes?.[0]; // Correct one
 
-if (
-  change?.field === "comments" &&
-  change?.value?.text?.trim()?.toLowerCase() === "flight"
-) {
-  const commentId = change?.value?.id;
-  console.log("Replying to Comment ID:", commentId);
-  replyToComment(commentId);
-}
+    console.log("DEBUG FIELD:", change?.field);
+    console.log("DEBUG TEXT:", change?.value?.text);
 
+    if (
+      change?.field === "comments" &&
+      change?.value?.text?.trim()?.toLowerCase() === "flight"
+    ) {
+      const commentId = change?.value?.id;
+      console.log("✅ Replying to Comment ID:", commentId);
+      replyToComment(commentId);
+    } else {
+      console.log("❌ Condition Not Matched");
+    }
+
+    // Rename variable inside loop to avoid shadowing
     if (event?.changes) {
-      event.changes.forEach(change => {
-        console.log("Field:", change.field);
-        console.log("Value:", change.value);
+      event.changes.forEach(c => {
+        console.log("Field:", c.field);
+        console.log("Value:", c.value);
       });
     }
-   
+
     res.status(200).send("EVENT_RECEIVED");
   } catch (err) {
     console.error("Webhook Error:", err.message);
