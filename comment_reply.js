@@ -2,7 +2,7 @@ const axios = require('axios');
 
 const HOST_URL = "graph.instagram.com";
 const IG_COMMENT_ID = "<IG_COMMENT_ID>";
-const ACCESS_TOKEN = "<YOUR_ACCESS_TOKEN>"; // if needed for authentication
+const ACCESS_TOKEN = "IGAASedoy93TZABZAFN0QnlpZAFhlSU5LaFE4Q3dTNXM2U2g2Rm1FUWtyUmdFX3oyZAUFyUURVWFl5UVpwTTJLWG5ZAQ05YYW1hSnlPMW1ZAazEzVmFMdmRWMUIxdTdVaVA2XzdfM1A4SGlhYjc1TXpBQ2drb2pPMXRjYkJQNllVSFFDRQZDZD"; // if needed for authentication
 
 async function replyToComment(CommentId) {
   try {
@@ -14,7 +14,7 @@ async function replyToComment(CommentId) {
       {
         headers: {
           "Content-Type": "application/json",
-          // "Authorization": `Bearer ${ACCESS_TOKEN}` // uncomment if your API requires token
+          "Authorization": `Bearer ${ACCESS_TOKEN}` // uncomment if your API requires token
         }
       }
     );
