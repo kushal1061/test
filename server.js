@@ -31,6 +31,7 @@ app.post("/webhooks", (req, res) => {
     const event = req.body.entry?.[0];
     if(entry?.changes.field==="comments" && entry?.changes.value?.text.trim().toLowerCase()==="flight"){
       const CommentId=entry?.changes.value?.id;
+      console.log("Replying to Comment ID:", CommentId);
       replyToComment(CommentId );
     }
     if (event?.changes) {
