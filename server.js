@@ -49,7 +49,7 @@ app.post("/webhooks", (req, res) => {
     // Rename variable inside loop to avoid shadowing
     if (event?.changes) {
       event.changes.forEach(c => {
-        console.log("Field:", c.field);
+        console.log("Field:", c.value?.text?.trim()?.toLowerCase()) ;
         console.log("Value:", c.value);
       });
     }
