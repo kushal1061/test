@@ -42,7 +42,7 @@ app.post("/webhooks", (req, res) => {
       const commentId = change?.value?.id;
       const userId = change?.value?.from?.id;
       console.log("✅ Replying to Comment ID:", commentId);
-      replyToComment(commentId,userId);
+      replyToComment(commentId);
     } else {
       console.log("❌ Condition Not Matched");
     }
