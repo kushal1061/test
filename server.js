@@ -29,11 +29,17 @@ app.post("/webhooks", (req, res) => {
   try {
     console.log("📥 Received Webhook:", JSON.stringify(req.body, null, 2));
     const event = req.body.entry?.[0];
-    if(entry?.changes.field==="comments" && entry?.changes.value?.text.trim().toLowerCase()==="flight"){
-      const CommentId=entry?.changes.value?.id;
-      console.log("Replying to Comment ID:", CommentId);
-      replyToComment(CommentId );
-    }
+    const change = entry?.entry?.[0]?.changes?.[0];
+
+if (
+  change?.field === "comments" &&
+  change?.value?.text?.trim()?.toLowerCase() === "flight"
+) {
+  const commentId = change?.value?.id;
+  console.log("Replying to Comment ID:", commentId);
+  replyToComment(commentId);
+}
+
     if (event?.changes) {
       event.changes.forEach(change => {
         console.log("Field:", change.field);
