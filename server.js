@@ -29,7 +29,7 @@ app.post("/webhooks", (req, res) => {
   try {
     console.log("📥 Received Webhook:", JSON.stringify(req.body, null, 2));
     const event = req.body.entry?.[0];
-    const change = entry?.entry?.[0]?.changes?.[0];
+    const change = event?.changes?.[0];
 
 if (
   change?.field === "comments" &&
