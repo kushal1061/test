@@ -31,7 +31,7 @@ app.post("/webhooks", (req, res) => {
 
     const event = req.body.entry?.[0];
     const change = event?.changes?.[0]; // Correct one
-
+    
     console.log("DEBUG FIELD:", change?.field);
     console.log("DEBUG TEXT:", change?.value?.text);
 
@@ -40,8 +40,9 @@ app.post("/webhooks", (req, res) => {
       change?.value?.text?.trim()?.toLowerCase() === "flight"
     ) {
       const commentId = change?.value?.id;
+      const userId = change?.value?.from?.id;
       console.log("✅ Replying to Comment ID:", commentId);
-      replyToComment(commentId);
+      replyToComment(commentId,userId);
     } else {
       console.log("❌ Condition Not Matched");
     }
