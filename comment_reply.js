@@ -19,7 +19,7 @@ async function replyToComment(commentId,userId) {
         }
       }
     );
-    console.log("Reply posted:", response.data);
+    console.log("Reply posted:", response);
   } catch (error) {
     console.error("Error posting reply:", error.response?.data || error.message);
   }
