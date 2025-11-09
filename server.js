@@ -45,7 +45,7 @@ app.post("/webhooks", (req, res) => {
       replyToComment(commentId);
     } 
     // Rename variable inside loop to avoid shadowing
-    else   (event?.changes) {
+    else  if (event?.changes) {
       event.changes.forEach(c => {
         console.log("Field:", c.value?.text?.trim()?.toLowerCase()) ;
         console.log("Value:", c.value);
