@@ -3,7 +3,7 @@ const express = require('express');
 const app = express();
 const port = 3000;
 app.use(express.json());
-const token = "kushalpal"
+const token = "kushalpal";
 app.get('/', (req, res) => {
    console.log(req.query);
   if (
