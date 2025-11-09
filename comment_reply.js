@@ -14,14 +14,18 @@ async function replyToComment(commentId) {
       {
         recipient: { comment_id: commentId },
         message: { text: "Hey ✈️ Thanks for reaching out! What do you want to explore?",
-    "quick_replies": [
+    "reply_options": [
       {
-        "title": "Flight Offers",
-        "payload": "FLIGHT_OFFERS"
+        "title": "Dubai 🕌",
+        "id": "OPTION_DUBAI"
       },
       {
-        "title": "Talk to Support",
-        "payload": "TALK_SUPPORT"
+        "title": "Singapore 🏙️",
+        "id": "OPTION_SINGAPORE"
+      },
+      {
+        "title": "Maldives 🏝️",
+        "id": "OPTION_MALDIVES"
       }
     ] }
       },
