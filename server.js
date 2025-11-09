@@ -43,12 +43,9 @@ app.post("/webhooks", (req, res) => {
       const userId = change?.value?.from?.id;
       console.log("✅ Replying to Comment ID:", commentId);
       replyToComment(commentId);
-    } else {
-      console.log("❌ Condition Not Matched");
-    }
-
+    } 
     // Rename variable inside loop to avoid shadowing
-    if (event?.changes) {
+    else   (event?.changes) {
       event.changes.forEach(c => {
         console.log("Field:", c.value?.text?.trim()?.toLowerCase()) ;
         console.log("Value:", c.value);
