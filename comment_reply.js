@@ -2,10 +2,8 @@ const axios = require('axios');
 
 const HOST_URL = "graph.instagram.com";
 const IG_COMMENT_ID = "<IG_COMMENT_ID>";
-const ACCESS_TOKEN = "IGAASedoy93TZABZAFRhU3ZAtM2xIQXpQUVRUeTdKQTA1a3JTOW92OWluU3RCUjd1OTRwMjZA6T0dkYThwRkQ4ODdDck1GZA0F1SFZAPaWp2aVZAnSGhLS19maF9OWWptZAjJNLVowOE1HQ2JUbXhEcjR5Y1J4NDN6LVdIazMyY0F4UnJmSQZDZD"; 
-// const              IGAASedoy93TZABZAFRhU3ZAtM2xIQXpQUVRUeTdKQTA1a3JTOW92OWluU3RCUjd1OTRwMjZA6T0dkYThwRkQ4ODdDck1GZA0F1SFZAPaWp2aVZAnSGhLS19maF9OWWptZAjJNLVowOE1HQ2JUbXhEcjR5Y1J4NDN6LVdIazMyY0F4UnJmSQZDZD// if needed for authentication
-// const userId = "17841477915554405";
-const userId ="17841449485648739";
+const ACCESS_TOKEN = ""; 
+const userId ="";
 async function replyToComment(commentId) {
   const url = `https://${HOST_URL}/v24.0/${userId}/messages`;
   try {
